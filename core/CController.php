@@ -41,7 +41,7 @@ class CController {
             $this->hprint = true;
         }
 
-        $viewfile = $this->viewFolder . $this->classname . "/$view.php";
+        $viewfile = strtolower($this->viewFolder . $this->classname . "/$view.php");
         if (file_exists($viewfile)) {
             include $viewfile;
         }
@@ -53,17 +53,37 @@ class CController {
     
     public function renderPartial($view) {
         
+        ob_start();
+        ob_implicit_flush(false);
+
+        extract($this->data);
+        $viewfile = strtolower($this->viewFolder . $this->classname . "/$view.php");
+        if (file_exists($viewfile)) {
+            include $viewfile;
+        }
+
+        return ob_get_clean();
     }
     
+    public function redirect($param = []) {
+        
+        $location = ROOT . get_param($param, 'location', '');
+        if (get_param($param, 'back') === 1)
+            $location = get_param($_SERVER, 'HTTP_REFERER', $location);
+        if (get_param($param, 'soft') === 1) {
+            $delay = get_param($param, 'delay', 3);
+            echo "<meta http-equiv=\"refresh\" content=\"$delay; URL=$location\">";
+        } else
+            header("Location: $location");
+        die;
+    }
+    
+    // просто чтоб были (переопределяются в потомках)
     public function actionIndex() {
         
     }
     
     public function ajaxIndex() {
-        
-    }
-    
-    public function redirect($location) {
         
     }
 
