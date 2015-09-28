@@ -5,8 +5,8 @@ return [
     'mysql' => [
         'host' => 'localhost',
         'user' => 'root',
-        'pass' => 'root',
-        'base' => 'perco',
+        'pass' => 'max',
+        'base' => 'oper',
     ],
     
 ];

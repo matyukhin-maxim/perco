@@ -15,6 +15,11 @@ mb_internal_encoding("UTF-8");
 
 try {
 
+    // подгружаем все файлы моделей (можено бы было в автолоаде, но фтопку)
+    foreach (glob('./models/*.php') as $model) {
+        include_once $model;
+    }
+    
     $module = $url[0];
 
     // проверяем сущевствование файла контролера (класса)
@@ -30,7 +35,7 @@ try {
     if (!class_exists($module)) {
         throw new Exception("Controller '$module' undefined!");
     }
-
+    
     /* @var $ctrl CController */
     $ctrl = new $module();
 
@@ -42,7 +47,7 @@ try {
     if (!method_exists($ctrl, $method)) {
         throw new Exception("Action '$method' undefined for controller '$module'.");
     }
-
+    
     // передаем параметры
     $ctrl->arguments = array_slice($url, 2);
     

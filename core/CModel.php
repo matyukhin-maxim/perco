@@ -8,14 +8,16 @@ class CModel {
         
         if (!$this->isConnected()) {
             
-            $config = include_once './config/config.php';
+            $config = include './config/config.php';
+            $properties = $config['mysql'];
+            
             try {
                 
                 // init mysql connection
                 self::$db = new PDO(
-                        sprintf("mysql:host=%s;dbname=%s", $config['host'], $config['base'])
-                        , $config['user']
-                        , $config['pass']
+                        sprintf("mysql:host=%s;dbname=%s", $properties['host'], $properties['base'])
+                        , $properties['user']
+                        , $properties['pass']
                         , [
                             PDO::ATTR_TIMEOUT => 5,
                             PDO::MYSQL_ATTR_INIT_COMMAND => 'set names utf8',
@@ -29,7 +31,7 @@ class CModel {
             } catch (Exception $exc) {
                 
                 self::$db = null;
-                echo 'База данных не доступна! ' . $exc->getMessage();
+                echo 'База данных не доступна! ' . $exc->getMessage() . "<br/>\n";
             }
                     
         }

@@ -1,14 +1,13 @@
 <?php
 
+/** @property RunModel $model  */
 class IndexController extends CController {
-
-    function __construct() {
-    }
-
-    
+       
     public function actionIndex() {
         
-        echo 'INDEX';
+        $this->model = new RunModel();
+        
+        var_dump($this->model);
         
     }
 }
