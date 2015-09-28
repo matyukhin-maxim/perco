@@ -17,16 +17,18 @@ class CController {
     // some special vars for internal use
     private $hprint = false;
     private $viewFolder = './views/';
+    private $classname;
             
     function __construct() {
         
         $this->title = 'Проходная НГРЭС';
         $this->arguments = array();
-        
+        $this->classname = get_class($this);
+
         // сформируем и проинициализируем модель по умолчанию 
         // для текущего контроллера.
         // её можно будет переопределить в конструкторе потомка
-        $defaultModel = str_replace('Controller', 'Model', get_class($this));
+        $defaultModel = str_replace('Controller', 'Model', $this->classname);
         if (class_exists($defaultModel))
             $this->model = new $defaultModel();
     }
@@ -34,8 +36,19 @@ class CController {
     public function render($view, $endpage = true) {
         
         extract($this->data);
-        
-        
+        if (!$this->hprint) {
+            include $this->viewFolder . 'hcommon.php';
+            $this->hprint = true;
+        }
+
+        $viewfile = $this->viewFolder . $this->classname . "/$view.php";
+        if (file_exists($viewfile)) {
+            include $viewfile;
+        }
+
+        if ($endpage) {
+            include $this->viewFolder . 'fcommon.php';
+        }
     }
     
     public function renderPartial($view) {
