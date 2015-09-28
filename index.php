@@ -18,7 +18,7 @@ try {
     $module = $url[0];
 
     // проверяем сущевствование файла контролера (класса)
-    $file = 'controllers/' . ucfirst($module) . '.php';
+    $file = 'controllers/' . ucfirst($module) . 'Controller.php';
     if (!file_exists($file)) {
         throw new Exception("Controller file not found. '$file'");
     }
@@ -50,5 +50,7 @@ try {
     $ctrl->$method();
     
 } catch (Exception $exc) {
-    echo $exc->getTraceAsString();
+    
+    echo $exc->getMessage();
+    
 }
