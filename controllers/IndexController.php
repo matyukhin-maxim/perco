@@ -7,7 +7,8 @@ class IndexController extends CController {
         
         $this->model = new RunModel();
         
-        var_dump($this->model);
+        //var_dump($this->model);
+        echo "hello";
         
     }
 }

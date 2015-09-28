@@ -2,9 +2,21 @@
 
 class CController {
 
+    // arguments passed in url, for selected action
     public $arguments;
+    
+    // page title for each page can be diferent
     public $title;
+    
+    // model class for controller
     public $model = null;
+    
+    // variables for output templates
+    public $data = [];
+    
+    // some special vars for internal use
+    private $hprint = false;
+    private $viewFolder = './views/';
             
     function __construct() {
         
@@ -20,6 +32,9 @@ class CController {
     }
     
     public function render($view, $endpage = true) {
+        
+        extract($this->data);
+        
         
     }
     
