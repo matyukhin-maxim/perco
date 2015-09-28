@@ -8,7 +8,7 @@ class IndexController extends CController {
         $this->model = new RunModel();
         
         //var_dump($this->model);
-        $this->render('index');
+        $this->render('menu');
         
     }
 }

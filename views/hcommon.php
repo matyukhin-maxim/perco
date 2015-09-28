@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title><?= $this->pageTitle; ?></title>
+    <title><?= $this->title; ?></title>
 </head>
 
 <body>

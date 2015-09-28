@@ -23,12 +23,12 @@ class CController {
         
         $this->title = 'Проходная НГРЭС';
         $this->arguments = array();
-        $this->classname = get_class($this);
+        $this->classname = str_replace('Controller', '', get_class($this));
 
         // сформируем и проинициализируем модель по умолчанию 
         // для текущего контроллера.
         // её можно будет переопределить в конструкторе потомка
-        $defaultModel = str_replace('Controller', 'Model', $this->classname);
+        $defaultModel = $this->classname . "Model";
         if (class_exists($defaultModel))
             $this->model = new $defaultModel();
     }
