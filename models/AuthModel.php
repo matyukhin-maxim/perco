@@ -1,9 +1,10 @@
 <?php
 
-class RunModel extends CModel {
+class AuthModel extends CModel {
 
-    function __construct() {
-        echo "DB: " . self::$db . "<br/>\n";
+    public function getAll() {
+        
+        return false;
     }
 
 }
