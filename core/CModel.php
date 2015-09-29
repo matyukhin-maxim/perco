@@ -63,10 +63,10 @@ class CModel {
         
         $data = $sth->fetchAll();
         
-        return array(
+        return [
             'data' => $data,
             'error' => get_param($error, 2),
-        );
+        ];
     }
     
     public static function isConnected() {
