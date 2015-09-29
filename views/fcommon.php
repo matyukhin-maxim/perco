@@ -3,7 +3,7 @@
 
     <footer class="footer">
         <div class="container">
-            <p class="text-muted text-center">PerCo Incorporated 2015</p>
+            <p class="text-muted text-center">Отдел <abbr title="55-88, 51-30, 50-98">ОИТ</abbr>. 2015г.</p>
         </div>
     </footer>
 
