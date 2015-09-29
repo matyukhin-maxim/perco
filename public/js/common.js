@@ -1,3 +1,6 @@
-/**
- * Created by Матюхин_МП on 29.09.2015.
- */
+$(function() {
+
+    var ctrl = window.location.pathname.split('/')[1];
+    if (ctrl.length) $('a[href*="' + ctrl + '"]').parent('li').addClass('active');
+
+});
