@@ -1,11 +1,12 @@
 <?php
 
+/** @property PDO $db */
 class CModel {
 
     protected static $db = null;
     
     function __construct() {
-        
+
         if (!$this->isConnected()) {
             
             $config = include './config/config.php';
@@ -27,7 +28,7 @@ class CModel {
                 //this->db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
                 self::$db->setAttribute(PDO::ATTR_STRINGIFY_FETCHES, false);
                 self::$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_SILENT);
-                
+
             } catch (Exception $exc) {
                 
                 self::$db = null;

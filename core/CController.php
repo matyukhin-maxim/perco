@@ -5,8 +5,8 @@ class CController {
     // arguments passed in url, for selected action
     public $arguments;
     
-    // page title for each page can be diferent
-    public $title;
+	// page title for each page can be different
+	public $title;
     
     // model class for controller
     public $model = null;
@@ -18,12 +18,21 @@ class CController {
     private $hprint = false;
     private $viewFolder = './views/';
     private $classname;
+
+    protected $scripts;
             
     function __construct() {
         
         $this->title = 'Проходная НГРЭС';
         $this->arguments = array();
         $this->classname = str_replace('Controller', '', get_class($this));
+
+        $this->scripts = [
+            'jquery.min',
+            'bootstrap.min',
+            'ie10-viewport-bug-workaround', // IE10 viewport hack for Surface/desktop Windows 8 bug
+	        'common',
+        ];
 
         // сформируем и проинициализируем модель по умолчанию 
         // для текущего контроллера.
@@ -67,12 +76,12 @@ class CController {
     
     public function redirect($param = []) {
         
-        $location = ROOT . get_param($param, 'location', '');
+        $location = get_param($param, 'location', '');
         if (get_param($param, 'back') === 1)
             $location = get_param($_SERVER, 'HTTP_REFERER', $location);
         if (get_param($param, 'soft') === 1) {
             $delay = get_param($param, 'delay', 3);
-            echo "<meta http-equiv=\"refresh\" content=\"$delay; URL=$location\">";
+	        printf('<meta http-equiv="refresh" content=%d; url=%s"', $delay, $location);
         } else
             header("Location: $location");
         die;
@@ -80,7 +89,9 @@ class CController {
     
     // просто чтоб были (переопределяются в потомках)
     public function actionIndex() {
-        
+
+        $this->render('');
+
     }
     
     public function ajaxIndex() {

@@ -2,8 +2,10 @@
 
 class MonitorController extends CController {
 
-	public function actionIndex() {
+	public function actionRun() {
 
+		$this->scripts[] =  'run';
+		$this->render('');
 	}
 
 }
