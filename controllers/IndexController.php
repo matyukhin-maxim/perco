@@ -4,13 +4,14 @@
 class IndexController extends CController {
        
     public function actionIndex() {
-        
-        $this->model = new RunModel();
-        $this->data['phead'] = "Монитор проходной НГРЭС";
-        $this->render('../info', false);
+
+        $this->redirect('/monitor/');
+
+        //$this->data['p_head'] = "Монитор проходной НГРЭС";
+        //$this->render('../info', false);
 
         //var_dump($this->model);
-        $this->render('menu');
+        //$this->render('menu');
         
     }
 }

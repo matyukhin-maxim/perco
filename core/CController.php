@@ -75,7 +75,13 @@ class CController {
     }
     
     public function redirect($param = []) {
-        
+
+        if (!is_array($param)) {
+	        $param = [
+		        'location' => $param,
+	        ];
+        }
+
         $location = get_param($param, 'location', '');
         if (get_param($param, 'back') === 1)
             $location = get_param($_SERVER, 'HTTP_REFERER', $location);
