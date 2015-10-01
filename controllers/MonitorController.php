@@ -2,10 +2,15 @@
 
 class MonitorController extends CController {
 
-	public function actionRun() {
+	public function actionIndex() {
 
-		$this->scripts[] =  'run';
-		$this->render('');
+		$this->data['p_head'] = 'Активность сотрудников';
+		$this->render('../info', false);
+
+		$this->render('filter', false);
+
+		$this->render('table');
+
 	}
 
 }
