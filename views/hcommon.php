@@ -7,6 +7,7 @@
         <link rel="icon" href="data:;base64,iVBORw0KGgo=">
         <title><?= $this->title; ?></title>
         <link rel="stylesheet" href="/public/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="/public/css/bootstrap-select.min.css"/>
         <link rel="stylesheet" href="/public/css/main.css"/>
         <link rel="stylesheet" href="/public/css/navbar.css"/>
         <!--[if lt IE 9]>
