@@ -67,7 +67,8 @@
 
                     <div class="row form-group">
                         <div class="col-xs-6">
-                            <input type="text" class="form-control" placeholder="Цех" name="depatrment"/>
+                            <!--<input type="text" class="form-control" placeholder="Цех" name="depatrment"/>-->
+                            
                         </div>
                         <div class="col-xs-6">
                             <input type="text" class="form-control" placeholder="Табельный номер" name="tabn"/>
@@ -78,9 +79,11 @@
 
                 
                 <select class="selectpicker" multiple data-live-search="true" 
-                        title="Выберите цех" 
-                        data-selected-text-format="count > 3">
-                    <option>Mustard</option>
+                        title="Цех" 
+                        data-selected-text-format="count > 3"
+                        data-size="15"
+                        name="depot[]">
+                    <option value="1">Mustard</option>
                     <option>Ketchup</option>
                     <option>Relish</option>
                     <option>123331dsdf</option>
