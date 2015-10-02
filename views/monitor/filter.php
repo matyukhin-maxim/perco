@@ -7,72 +7,87 @@
         </div>
         <div class="panel-body">
 
-            <div class="col-xs-12 col-md-5">
-                <div class="row form-group">
-                    <label class="col-xs-12" for="">Дата :</label>
-                    <div class="col-xs-6">
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                                <i class="glyphicon glyphicon-calendar" title="С"></i>
-                            </span>
-                            <input type="text" class="form-control" />
-                        </div>
-                    </div>
-                    <div class="col-xs-6">
-                        <div class="input-group">
-                            <span class="input-group-addon" title="По">
-                                <i class="glyphicon glyphicon-calendar"></i>
-                            </span>
-                            <input type="text" class="form-control" />
-                        </div>
-                    </div>
-                </div>
-                <div class="row form-group">
-                    <label class="col-xs-12" for="">Время :</label>
-                    <div class="col-xs-6">
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                                <i class="glyphicon glyphicon-time" title="С"></i>
-                            </span>
-                            <input type="text" class="form-control" />
-                        </div>
-                    </div>
-                    <div class="col-xs-6">
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                                <i class="glyphicon glyphicon-time" title="По"></i>
-                            </span>
-                            <input type="text" class="form-control" />
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <form action="" id="filter">
 
-            <div class="col-xs-12 col-md-7">
-
-                <div class="row form-group">
-                    <label for="" class="col-xs-12">Сотрудник :</label>
-                    <div class="col-xs-12">
-                        <input type="" class="form-control" placeholder="Фамилия" />
+                <div class="col-xs-12 col-md-5">
+                    <div class="row form-group">
+                        <label class="col-xs-12" for="">Дата :</label>
+                        <div class="col-xs-6">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="glyphicon glyphicon-calendar" title="С"></i>
+                                </span>
+                                <input type="text" class="form-control" name="bdate"/>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="input-group">
+                                <span class="input-group-addon" title="По">
+                                    <i class="glyphicon glyphicon-calendar"></i>
+                                </span>
+                                <input type="text" class="form-control" name="edate"/>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-xs-6">
-                        <input type="" class="form-control" placeholder="Имя"/>
-                    </div>
-                    <div class="col-xs-6">
-                        <input type="" class="form-control" placeholder="Отчество"/>
+                    <div class="row form-group">
+                        <label class="col-xs-12" for="">Время :</label>
+                        <div class="col-xs-6">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="glyphicon glyphicon-time" title="С"></i>
+                                </span>
+                                <input type="text" class="form-control" name="btime"/>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="glyphicon glyphicon-time" title="По"></i>
+                                </span>
+                                <input type="text" class="form-control" name="etime"/>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
+                <div class="col-xs-12 col-md-7">
+
+                    <div class="row form-group">
+                        <label for="" class="col-xs-12">Сотрудник :</label>
+                        <div class="col-xs-12">
+                            <input type="text" class="form-control" placeholder="Фамилия" name="lname"/>
+                        </div>
+                        <div class="col-xs-6">
+                            <input type="text" class="form-control" placeholder="Имя" name="fname"/>
+                        </div>
+                        <div class="col-xs-6">
+                            <input type="text" class="form-control" placeholder="Отчество" name="pname"/>
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col-xs-6">
+                            <input type="text" class="form-control" placeholder="Цех" name="depatrment"/>
+                        </div>
+                        <div class="col-xs-6">
+                            <input type="text" class="form-control" placeholder="Табельный номер" name="tabn"/>
+                        </div>
+                    </div>
+
+                </div>
+
                 
-                <div class="row form-group">
-                    <div class="col-xs-6">
-                        <input type="text" class="form-control" placeholder="Цех"/>
-                    </div>
-                    <div class="col-xs-6">
-                        <input type="text" class="form-control" placeholder="Табельный номер"/>
-                    </div>
-                </div>
+                <select class="selectpicker" multiple data-live-search="true" 
+                        title="Выберите цех" 
+                        data-selected-text-format="count > 3">
+                    <option>Mustard</option>
+                    <option>Ketchup</option>
+                    <option>Relish</option>
+                    <option>123331dsdf</option>
+                    <option>qweqweqw</option>
+                </select>
+            </form>
 
-            </div>
         </div> <!-- panel body -->
     </div>
 
