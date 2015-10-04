@@ -52,43 +52,35 @@
 
                 <div class="col-xs-12 col-md-7">
 
-                    <div class="row form-group">
-                        <label for="" class="col-xs-12">Сотрудник :</label>
-                        <div class="col-xs-12">
-                            <input type="text" class="form-control" placeholder="Фамилия" name="lname"/>
-                        </div>
-                        <div class="col-xs-6">
-                            <input type="text" class="form-control" placeholder="Имя" name="fname"/>
-                        </div>
-                        <div class="col-xs-6">
-                            <input type="text" class="form-control" placeholder="Отчество" name="pname"/>
-                        </div>
+                    <div class="col-xs-6">
+                        <label for="">Сотрудник :</label>
+                        <input type="text" class="form-control" placeholder="Фамилия" name="lname"/>
+                        <input type="text" class="form-control" placeholder="Имя" name="fname"/>
+                        <input type="text" class="form-control" placeholder="Отчество" name="pname"/>
                     </div>
 
-                    <div class="row form-group">
-                        <div class="col-xs-6">
-                            <!--<input type="text" class="form-control" placeholder="Цех" name="depatrment"/>-->
-                            
-                        </div>
-                        <div class="col-xs-6">
-                            <input type="text" class="form-control" placeholder="Табельный номер" name="tabn"/>
-                        </div>
+                    <div class="col-xs-6">
+                        <label for="">Дополнительные данные :</label>
+                        <select class="selectpicker" multiple data-live-search="true" 
+                                title="Цех" 
+                                data-selected-text-format="count > 3"
+                                data-size="10"
+                                data-width="100%"
+                                name="depot[]">
+                            <?php
+                                $options = get_param($depots, NULL, []);
+                                foreach ($options as $item)
+                                    printf("<option>%s</option>\n", $item);
+                            ?>
+                        </select>
+                        <input type="text" class="form-control" placeholder="Табельный номер" name="tabn"/>
+                        <a href="#" class="btn btn-default col-xs-4 col-xs-offset-8">
+                            <i class="glyphicon glyphicon-refresh"></i>
+                        </a>
                     </div>
 
                 </div>
 
-                
-                <select class="selectpicker" multiple data-live-search="true" 
-                        title="Цех" 
-                        data-selected-text-format="count > 3"
-                        data-size="15"
-                        name="depot[]">
-                    <option value="1">Mustard</option>
-                    <option>Ketchup</option>
-                    <option>Relish</option>
-                    <option>123331dsdf</option>
-                    <option>qweqweqw</option>
-                </select>
             </form>
 
         </div> <!-- panel body -->

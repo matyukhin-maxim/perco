@@ -1,5 +1,6 @@
 <?php
 
+/** @property MonitorModel $model */
 class MonitorController extends CController {
 
     public function actionIndex() {
@@ -8,7 +9,10 @@ class MonitorController extends CController {
 
         $this->data['p_head'] = 'Активность сотрудников';
         $this->render('../info', false);
-
+        
+        // get all departments for selectbox
+        $this->data['depots'] = $this->model->getDepots();
+        
         $this->render('filter', false);
 
         $this->render('table');
@@ -21,7 +25,7 @@ class MonitorController extends CController {
                 'filter' => FILTER_VALIDATE_REGEXP,
                 'options' => [
                     'regexp' => '/^\d{4}(\-\d{2}){2}$/',
-                    'default' => date('Y-m-d'),
+                    'default' => '2015-10-01' //date('Y-m-d'),
                 ],
             ],
             'edate' => [
@@ -48,21 +52,20 @@ class MonitorController extends CController {
             'lname' => FILTER_SANITIZE_STRING,
             'fname' => FILTER_SANITIZE_STRING,
             'pname' => FILTER_SANITIZE_STRING,
-            
+            //'depot' => [
+            //    'filter' => FILTER_SANITIZE_STRING,
+            //    'flags'  => FILTER_REQUIRE_ARRAY,
+            //],
+            'tabn'  => FILTER_SANITIZE_STRING,
         ];
-
-        /*
-        $bdate = filter_input(INPUT_POST, 'bdate', FILTER_VALIDATE_REGEXP, [
-            'options' => [
-                'regexp' => '/^\d{4}(\-\d{2}){2}$/',
-                'default' => date('Y-m-d'),
-            ],
-        ]);*/
         
-        $data = filter_input_array(INPUT_POST, $filter);
-
-        var_dump($data);
-        //var_dump($_POST);
+        $params = filter_input_array(INPUT_POST, $filter);
+        $data = $this->model->getActions($params);
+                
+        //var_dump($data);
+        
+        $this->data['events'] = $data['data'];
+        echo $this->renderPartial('rowdata');
         
         //var_dump(array_merge($_POST, $data));
     }

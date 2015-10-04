@@ -1,24 +1,25 @@
 $(function () {
 
-    /*
-    $.post('/monitor/getdata/', $('#filter').serialize(),
+    function update() {
+        $.post('/monitor/getdata/', $('#filter').serialize(),
             function (data) {
-                //console.log(data);
                 $('#monitor > tbody').html(data);
             });
-    */
+    };
 
     var tmr = undefined;
-    $('input[type="text"]').on('keyup change', function () {
+    $('input[type="text"], select').on('keyup change', function () {
         clearTimeout(tmr);
         tmr = setTimeout(function () {
-            $.post('/monitor/getdata/', $('#filter').serialize(),
-                function (data) {
-                    $('#monitor > tbody').html(data);
-                });
+            update();
         }, 1500);
     });
     
-    $('input[name="fname"]').trigger('change');
+    $('a').click(function () {
+        update();
+        return false;
+    });
+
+    update();
 });
 
