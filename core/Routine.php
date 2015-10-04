@@ -26,3 +26,21 @@ function isPOST() {
 function isAjax() {
     return get_param($_SERVER, 'HTTP_X_REQUESTED_WITH') === 'XMLHttpRequest';
 }
+
+function toLike($value) {
+    
+    $ans = '%';
+    $type = gettype($value);
+    switch ($type) {
+        case 'string':
+
+            if (!empty($value)) {
+                $ans .= "$value%";
+            }
+            break;
+
+        default:
+            break;
+    }
+    return $ans;
+}

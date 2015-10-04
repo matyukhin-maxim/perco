@@ -2,11 +2,17 @@
 
 return [
     
+//    'mysql' => [
+//        'host' => 'localhost',
+//        'user' => 'root',
+//        'pass' => 'max',
+//        'base' => 'oper',
+//    ],
     'mysql' => [
-        'host' => 'localhost',
-        'user' => 'root',
-        'pass' => 'max',
-        'base' => 'oper',
+        'host' => '172.28.120.39',
+        'user' => 'matyukhin',
+        'pass' => 'ksTg3276sm@',
+        'base' => 'perco',
     ],
     
 ];
