@@ -13,7 +13,7 @@
                     <div class="row form-group">
                         <label class="col-xs-12" for="">Дата :</label>
                         <div class="col-xs-6">
-                            <div class="input-group">
+                            <div class="input-group date dpicker">
                                 <span class="input-group-addon">
                                     <i class="glyphicon glyphicon-calendar" title="С"></i>
                                 </span>
@@ -21,7 +21,7 @@
                             </div>
                         </div>
                         <div class="col-xs-6">
-                            <div class="input-group">
+                            <div class="input-group date dpicker">
                                 <span class="input-group-addon" title="По">
                                     <i class="glyphicon glyphicon-calendar"></i>
                                 </span>
@@ -32,7 +32,7 @@
                     <div class="row form-group">
                         <label class="col-xs-12" for="">Время :</label>
                         <div class="col-xs-6">
-                            <div class="input-group">
+                            <div class="input-group date tpicker">
                                 <span class="input-group-addon">
                                     <i class="glyphicon glyphicon-time" title="С"></i>
                                 </span>
@@ -40,7 +40,7 @@
                             </div>
                         </div>
                         <div class="col-xs-6">
-                            <div class="input-group">
+                            <div class="input-group date tpicker">
                                 <span class="input-group-addon">
                                     <i class="glyphicon glyphicon-time" title="По"></i>
                                 </span>
@@ -81,6 +81,7 @@
                             <i class="glyphicon glyphicon-refresh"></i>
                         </a>
                     </div>
+                    
 
                 </div>
 
