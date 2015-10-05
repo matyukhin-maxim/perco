@@ -52,14 +52,14 @@ class MonitorController extends CController {
             'lname' => FILTER_SANITIZE_STRING,
             'fname' => FILTER_SANITIZE_STRING,
             'pname' => FILTER_SANITIZE_STRING,
-            //'depot' => [
-            //    'filter' => FILTER_SANITIZE_STRING,
-            //    'flags'  => FILTER_REQUIRE_ARRAY,
-            //],
+            'depot' => [
+                'filter' => FILTER_SANITIZE_STRING,
+                'flags'  => FILTER_REQUIRE_ARRAY,
+            ],
             'tabn'  => FILTER_SANITIZE_STRING,
         ];
         
-        $params = filter_input_array(INPUT_POST, $filter);
+        $params = filter_input_array(INPUT_POST, $filter); 
         $data = $this->model->getActions($params);
                 
         //var_dump($data);
