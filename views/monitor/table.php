@@ -14,7 +14,7 @@
                 </thead>
             </table>
         </div>
-        <div class="panel-body">
+        <div class="panel-body panel-response">
             <table class="table table-striped table-fixed" id="monitor">
                 <colgroup>
                     <col class="col-xs-1">

@@ -28,7 +28,12 @@ body > .container {
   padding-left: 15px;
 }
 
-
 body {
   background-color: #cfcfcf;;
+}
+
+.panel-response {
+    min-height: 300px;
+    max-height: 400px;
+    overflow-y: auto;
 }

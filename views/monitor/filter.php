@@ -62,7 +62,7 @@
                     <div class="col-xs-6">
                         <label for="">Дополнительные данные :</label>
                         <select class="selectpicker" multiple data-live-search="true" 
-                                title="Цех" 
+                                title="Цех [не выбран]" 
                                 data-selected-text-format="count > 3"
                                 data-size="10"
                                 data-width="100%"
@@ -74,7 +74,10 @@
                             ?>
                         </select>
                         <input type="text" class="form-control" placeholder="Табельный номер" name="tabn"/>
-                        <a href="#" class="btn btn-default col-xs-4 col-xs-offset-8">
+                        <a href="#" class="btn btn-default col-xs-4" title="Сброс" id="reset">
+                            <i class="glyphicon glyphicon-repeat"></i>
+                        </a>
+                        <a href="#" class="btn btn-default col-xs-4 col-xs-offset-4" title="Обновить" id="update">
                             <i class="glyphicon glyphicon-refresh"></i>
                         </a>
                     </div>
