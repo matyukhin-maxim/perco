@@ -19,8 +19,19 @@ $(function () {
         $('input[name="etime"]').val('23:59');
         
         $('.selectpicker').selectpicker('deselectAll');
-        update();
     }
+    
+    $('.dpicker').datetimepicker({
+        format: 'YYYY-MM-DD'
+    });
+    
+    $('.tpicker').datetimepicker({
+        format: 'LT'
+    });
+    
+    $('.dpicker, .tpicker').on('dp.hide', function (e) {
+        update();
+    });
 
     var tmr = undefined;
     $('input[type="text"], select').on('keyup change', function () {
@@ -38,10 +49,11 @@ $(function () {
     $('#reset').click(function () {
         $('#filter').trigger('reset');
         setDefaults();
+        update();
         return false;
     });
 
     setDefaults();
-    //update();
+    update();
 });
 

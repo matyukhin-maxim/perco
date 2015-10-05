@@ -25,10 +25,12 @@ class CController {
         $this->scripts = [
             'jquery.min',
             'bootstrap.min',
-            'ie10-viewport-bug-workaround', // IE10 viewport hack for Surface/desktop Windows 8 bug
-            'bootstrap-select.min',
-            'i18n/defaults-ru_RU',          // rusification
             'moment.min',
+            'i18n/moment-ru',               // rus moment.js
+            'bootstrap-select.min',
+            'bootstrap-datetimepicker.min', // date & time picker
+            'i18n/defaults-ru_RU',          // rus selectpicker
+            'ie10-viewport-bug-workaround', // IE10 viewport hack for Surface/desktop Windows 8 bug
             'common',
         ];
 
