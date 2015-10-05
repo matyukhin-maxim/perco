@@ -43,6 +43,34 @@ class CModel {
                 'error' => 'Not connected',
             ];
 
+        /** 
+         * модернизируем запрос на лету
+         * если есть параметры в виде массивов
+         * такие параметры будем заменять на конструкцию in
+         * 
+         * where field in :[ARRAY] => where field in (x1,x2,...)
+         */
+                
+        $cnt = 0;
+        foreach ($param as $key => $value) {
+            if (gettype($value) === 'array') {
+                $condition = "(";
+                foreach ($value as $item) {
+                    
+                    $condition .= $cnt ? "," : ""; // если не первый параметр, то добавим запятую
+                    $vparam = "_X" . ++$cnt;
+                    $condition .= " :$vparam";
+                    
+                    // а параметр подмассива перекидываем в основной массив
+                    // елементы вложенного массива не должны быть сами массивами, иначе хрень будет
+                    $param[$vparam] = $item;
+                }
+                $condition .= ") ";
+                $query = str_replace(":$key", $condition, $query);
+                unset($param[$key]);
+            }
+        }
+        
         $sth = self::$db->prepare($query);
 
         foreach ($param as $key => $value) {

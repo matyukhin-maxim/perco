@@ -12,6 +12,14 @@ class MonitorModel extends CModel{
     
     public function getActions($params) {
         
+        // если параметр с отделами пустой,
+        // то будем считать что фильтр не задан,
+        // и в запросе этот параметр учитывать не будем
+        $fdepots = 'and p.department in :depot ';
+        if (!get_param($params, 'depot')) {
+            $fdepots = ' ';
+            unset($params['depot']);
+        }
         
         $query = "
         select 
@@ -28,6 +36,7 @@ class MonitorModel extends CModel{
             and p.fname like :fname
             and p.pname like :pname
             and p.tabnum like :tabn
+            $fdepots
         order by e.ev_date desc, e.ev_time desc
         limit 100";
         
