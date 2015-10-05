@@ -28,6 +28,7 @@ class CController {
             'ie10-viewport-bug-workaround', // IE10 viewport hack for Surface/desktop Windows 8 bug
             'bootstrap-select.min',
             'i18n/defaults-ru_RU',          // rusification
+            'moment.min',
             'common',
         ];
 
