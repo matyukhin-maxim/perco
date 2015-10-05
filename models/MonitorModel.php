@@ -28,8 +28,8 @@ class MonitorModel extends CModel{
             and p.fname like :fname
             and p.pname like :pname
             and p.tabnum like :tabn
-        order by e.ev_date, e.ev_time
-        limit 50";
+        order by e.ev_date desc, e.ev_time desc
+        limit 100";
         
         $params['lname'] = toLike(get_param($params, 'lname', ''));
         $params['fname'] = toLike(get_param($params, 'fname', ''));
