@@ -22,11 +22,13 @@ $(function () {
     }
     
     $('.dpicker').datetimepicker({
-        format: 'YYYY-MM-DD'
+        format: 'YYYY-MM-DD',
+        ignoreReadonly: true
     });
     
     $('.tpicker').datetimepicker({
-        format: 'LT'
+        format: 'LT',
+        ignoreReadonly: true
     });
     
     $('.dpicker, .tpicker').on('dp.hide', function (e) {

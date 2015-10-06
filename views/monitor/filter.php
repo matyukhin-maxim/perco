@@ -17,7 +17,7 @@
                                 <span class="input-group-addon">
                                     <i class="glyphicon glyphicon-calendar" title="С"></i>
                                 </span>
-                                <input type="text" class="form-control" name="bdate"/>
+                                <input type="text" class="form-control" name="bdate" readonly="true"/>
                             </div>
                         </div>
                         <div class="col-xs-6">
@@ -25,7 +25,7 @@
                                 <span class="input-group-addon" title="По">
                                     <i class="glyphicon glyphicon-calendar"></i>
                                 </span>
-                                <input type="text" class="form-control" name="edate"/>
+                                <input type="text" class="form-control" name="edate" readonly="true"/>
                             </div>
                         </div>
                     </div>
@@ -36,7 +36,7 @@
                                 <span class="input-group-addon">
                                     <i class="glyphicon glyphicon-time" title="С"></i>
                                 </span>
-                                <input type="text" class="form-control" name="btime"/>
+                                <input type="text" class="form-control" name="btime" readonly="true"/>
                             </div>
                         </div>
                         <div class="col-xs-6">
@@ -44,7 +44,7 @@
                                 <span class="input-group-addon">
                                     <i class="glyphicon glyphicon-time" title="По"></i>
                                 </span>
-                                <input type="text" class="form-control" name="etime"/>
+                                <input type="text" class="form-control" name="etime" readonly="true"/>
                             </div>
                         </div>
                     </div>

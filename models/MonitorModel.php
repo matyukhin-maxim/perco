@@ -23,7 +23,7 @@ class MonitorModel extends CModel{
         
         $query = "
         select 
-                p.tabnum,  p.department,
+                p.tabnum,  p.department, p.id,
                 concat_ws(' ', p.lname, p.fname, p.pname) fio,
                 if (e.ev_type = 2, 'ВХОД', 'ВЫХОД') evt,
                 e.ev_date, e.ev_time
