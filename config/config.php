@@ -15,4 +15,7 @@ return [
         'base' => 'perco',
     ],
     
+    //'dbpath' => '/mnt/prohod/Baza/',
+    'dbpath' => '/home/matyukhin/db/',
+    
 ];

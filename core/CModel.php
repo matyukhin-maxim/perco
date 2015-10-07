@@ -4,12 +4,14 @@
 class CModel {
 
     protected static $db = null;
-
+    protected static $errorlist = [];   // store all errors happeniung in runtime
+            
+            
     function __construct() {
 
         if (!$this->isConnected()) {
 
-            $config = include './config/config.php';
+            $config = include '/config/config.php';
             $properties = $config['mysql'];
 
             try {
@@ -34,8 +36,14 @@ class CModel {
                 echo 'База данных не доступна! ' . $exc->getMessage() . "<br/>\n";
             }
         }
+        self::$errorlist[]; // clear all errors
     }
 
+    public function getErrors() {
+        
+        return self::$errorlist;
+    }
+    
     protected function select($query, $param = array()) {
 
         if (!self::isConnected())
@@ -104,5 +112,24 @@ class CModel {
 
         return self::$db !== null;
     }
+    
+    public function startTransaction() {
+        
+        self::$db->beginTransaction();
+    }
+    
+    public function stopTransaction($success = true) {
+        
+        if ($success)
+            self::$db->commit();
+        else
+            self::$db->rollBack();
+    }
+    
+    /*
+    public static function getDB() {
+        return $this->db;
+    }
+    */ 
 
 }

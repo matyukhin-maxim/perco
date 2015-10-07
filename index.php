@@ -4,6 +4,7 @@ ini_set('display_errors', 1);
 set_time_limit(0);
 error_reporting(E_ALL);
 
+include_once 'core/CParadox.php';
 include_once 'core/CModel.php';
 include_once 'core/CController.php';
 include_once 'core/Routine.php';
