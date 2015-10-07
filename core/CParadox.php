@@ -25,7 +25,8 @@ class ParadoxDB {
             $info = pathinfo($path_to_db);
             $info['extension'] = ctype_upper($info['extension']) ? '.MB' : '.mb'; // as smart as i can...  :-D
             $blob = $info['dirname'] . '/' . $info['filename'] . $info['extension'];
-            px_set_blob_file($this->pxdoc, $blob);
+            if (file_exists($blob))
+                px_set_blob_file($this->pxdoc, $blob);
         }
     }
 
@@ -44,7 +45,7 @@ class ParadoxDB {
         $result = [];
         $cnt = $this->getCount();
         while (--$cnt >= 0 && $cnt > $stop) {
-            $result[$cnt] = $this->getRecord ($cnt);
+            $result[$cnt] = $this->getRecord($cnt);
         }
         
         return $result;

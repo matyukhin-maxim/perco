@@ -11,7 +11,7 @@ class CModel {
 
         if (!$this->isConnected()) {
 
-            $config = include '/config/config.php';
+            $config = include './config/config.php';
             $properties = $config['mysql'];
 
             try {
@@ -36,7 +36,7 @@ class CModel {
                 echo 'База данных не доступна! ' . $exc->getMessage() . "<br/>\n";
             }
         }
-        self::$errorlist[]; // clear all errors
+        self::$errorlist = []; // clear all errors
     }
 
     public function getErrors() {

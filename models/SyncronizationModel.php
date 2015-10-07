@@ -9,7 +9,7 @@ class SyncronizationModel extends CModel {
     public function __construct() {
         parent::__construct();
         
-        $this->statements['person'] = $this->db->prepare(''
+        $this->statements['person'] = self::$db->prepare(''
                 . 'replace into person '
                 . '(id, lname, fname, pname, tabnum, department, position, photo, deleted) '
                 . 'values (:id, :lname, :fname, :pname, :tabn, :dep, :pos, :pic, :del)');
@@ -18,19 +18,25 @@ class SyncronizationModel extends CModel {
 
     public function runStatement($params, $sthname) {
         
-        /** @var PDOStatement */
         $sth = get_param($this->statements, $sthname);
         if (!$sth) {
             self::$errorlist[] = "Statement '$sthname' not found";
             return;
         }
         
+        $res = $sth->execute($params);
         
+        $einfo      = $sth->errorInfo();
+        $message    = get_param($einfo, 2, '');
+        if (!empty($message))
+            self::$errorlist[] = $message;
+
+        return $res;
     }
     
     public function deleteAllUsers() {
         
-        return $this->db->query('update person set deleted = 1');
+        return self::$db->query('update person set deleted = 1');
     }
 
 }

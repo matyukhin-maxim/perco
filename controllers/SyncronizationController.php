@@ -9,7 +9,7 @@ class SyncronizationController extends CController {
     public function __construct() {
         parent::__construct();
         
-        $config = include '/config/config.php';
+        $config = include './config/config.php';
         $this->path = get_param($config, 'dbpath', '/');
     }
 
@@ -19,6 +19,8 @@ class SyncronizationController extends CController {
         
         $this->render('', false);
         var_dump($this->path);
+        
+        $this->syncUsers();
         $this->render('');
         
     }
@@ -62,6 +64,7 @@ class SyncronizationController extends CController {
         $this->model->stopTransaction($ok);
         $pdb->closeDB();
         
+        var_dump($ok);
         var_dump($this->model->getErrors());
         return true;
     }
