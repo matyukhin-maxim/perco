@@ -2,7 +2,7 @@
 
 ini_set('display_errors', 1);
 set_time_limit(0);
-error_reporting(E_ALL);
+error_reporting(E_ALL ^ E_WARNING);
 
 include_once 'core/CParadox.php';
 include_once 'core/CModel.php';

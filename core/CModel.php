@@ -99,12 +99,14 @@ class CModel {
 
         $sth->execute();
         $error = $sth->errorInfo();
+        $emessasge = get_param($error, 2);
+        self::$errorlist[] = $emessasge;
 
         $data = $sth->fetchAll();
 
         return [
             'data' => $data,
-            'error' => get_param($error, 2),
+            'error' => $emessasge,
         ];
     }
 
