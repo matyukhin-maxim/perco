@@ -15,7 +15,7 @@
             </table>
         </div>
         <div class="panel-body panel-response">
-            <table class="table table-striped table-fixed" id="monitor">
+            <table class="table table-striped table-bordered table-condensed" id="monitor">
                 <colgroup>
                     <col class="col-xs-1">
                     <col class="col-xs-1">

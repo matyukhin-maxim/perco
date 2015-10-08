@@ -7,7 +7,7 @@ class MonitorController extends CController {
 
         $this->scripts[] = 'monitoring';
 
-        $this->data['p_head'] = 'Активность сотрудников';
+        $this->data['p_head'] = 'Мониторинг сотрудников';
         $this->render('../info', false);
         
         // get all departments for selectbox

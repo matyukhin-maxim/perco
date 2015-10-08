@@ -122,11 +122,15 @@ class SyncronizationController extends CController {
                     $data = $pdb->getRecord($pxcount); // get current record
                     
                     // filter data by specified ccriteria (like person_id & s.o.)
-                    if (get_param($data, 'PERSONID') === 0)
+                    if (get_param($data, 'PERSONID') === 0) {
+                        --$delta;
                         continue; // records with undefined user, there is nothing to db
+                    }
 
-                    if (get_param($data, 'EV_ID') > 1)
+                    if (get_param($data, 'EV_ID') > 1) {
+                        --$delta;
                         continue; // we need only input/output event (1/0)
+                    }
                     
                     // make date from 1st row of data (   year & month get from 'startdate', day number - from db
                     $mdate = date('Y-m', $starttime) . sprintf("-%02d", get_param($data, 'EV_DAY', 1));
