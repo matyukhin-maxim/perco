@@ -21,6 +21,9 @@ try {
         include_once $model;
     }
     
+    // load global config
+    CController::$cfg = require_once './config/config.php';
+    
     $module = $url[0];
 
     // проверяем сущевствование файла контролера (класса)

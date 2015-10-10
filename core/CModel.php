@@ -11,8 +11,7 @@ class CModel {
 
         if (!$this->isConnected()) {
 
-            $config = include './config/config.php';
-            $properties = $config['mysql'];
+            $properties = get_param(CController::$cfg, 'mysql', []);
 
             try {
 

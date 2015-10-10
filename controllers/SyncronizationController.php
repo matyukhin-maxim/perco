@@ -9,8 +9,7 @@ class SyncronizationController extends CController {
     public function __construct() {
         parent::__construct();
         
-        $config = include './config/config.php';
-        $this->path = get_param($config, 'dbpath', '/');
+        $this->path = get_param(CController::$cfg, 'dbpath', '/');
     }
 
 

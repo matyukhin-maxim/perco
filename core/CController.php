@@ -15,11 +15,13 @@ class CController {
     private $viewFolder = './views/';
     private $classname;
     protected $scripts;
-
+    
+    public static $cfg; // global configuration
+    
     function __construct() {
 
         $this->title = 'Проходная НГРЭС';
-        $this->arguments = array();
+        $this->arguments = [];
         $this->classname = str_replace('Controller', '', get_class($this));
 
         $this->scripts = [
@@ -33,7 +35,7 @@ class CController {
             'ie10-viewport-bug-workaround', // IE10 viewport hack for Surface/desktop Windows 8 bug
             'common',
         ];
-
+        
         // сформируем и проинициализируем модель по умолчанию 
         // для текущего контроллера.
         // её можно будет переопределить в конструкторе потомка
