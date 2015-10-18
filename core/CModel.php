@@ -17,13 +17,13 @@ class CModel {
 
                 // init mysql connection
                 self::$db = new PDO(
-                        sprintf("mysql:host=%s;dbname=%s", $properties['host'], $properties['base'])
-                        , $properties['user']
-                        , $properties['pass']
-                        , [
-                    PDO::ATTR_TIMEOUT => 5,
-                    PDO::MYSQL_ATTR_INIT_COMMAND => 'set names utf8',
-                ]);
+                    sprintf("mysql:host=%s;dbname=%s", $properties['host'], $properties['base'])
+                    , $properties['user']
+                    , $properties['pass']
+                    , [
+                        PDO::ATTR_TIMEOUT => 5,
+                        PDO::MYSQL_ATTR_INIT_COMMAND => 'set names utf8',
+                    ]);
 
                 self::$db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
                 //this->db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
@@ -32,10 +32,9 @@ class CModel {
             } catch (Exception $exc) {
 
                 self::$db = null;
-                echo 'База данных не доступна! ' . $exc->getMessage() . "<br/>\n";
+                self::$errorlist[] = 'База данных не доступна! ' . $exc->getMessage();
             }
         }
-        self::$errorlist = []; // clear all errors
     }
 
     public function getErrors() {
@@ -45,10 +44,10 @@ class CModel {
     
     protected function select($query, $param = array()) {
 
-        if (!self::isConnected())
-            return [
-                'error' => 'Not connected',
-            ];
+        if (!self::isConnected()) {
+            self::$errorlist[] = 'Связь с БД не установлена.';
+            return [];
+        }
 
         /** 
          * модернизируем запрос на лету
@@ -99,14 +98,10 @@ class CModel {
         $sth->execute();
         $error = $sth->errorInfo();
         $emessasge = get_param($error, 2);
-        self::$errorlist[] = $emessasge;
+        if ($emessasge)
+            self::$errorlist[] = $emessasge;
 
-        $data = $sth->fetchAll();
-
-        return [
-            'data' => $data,
-            'error' => $emessasge,
-        ];
+        return  $sth->fetchAll();
     }
 
     public static function isConnected() {

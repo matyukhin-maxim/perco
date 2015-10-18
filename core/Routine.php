@@ -88,3 +88,30 @@ function toLike($value) {
 function d2u($text) {
     return iconv('cp866', 'utf-8', $text);
 }
+
+/**
+ * Возвращает часть массива по списку ключей
+ * передынных в виде строки или массива
+ *
+ * @param array $data
+ * @param string|array $keys
+ * @param boolean $addempty
+ *
+ * @return array
+ */
+function get_array_part($data, $keys, $addempty = false) {
+
+    $result = [];
+
+    if (!is_array($keys)) {
+        $keys = explode(' ', $keys);
+    }
+
+    foreach ($keys as $key) {
+        $value = get_param($data, $key);
+        if ($value || $addempty)
+            $result[] = $value;
+    }
+
+    return $result;
+}

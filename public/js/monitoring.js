@@ -17,6 +17,8 @@ $(function () {
         $('input[name="bdate"], input[name="edate"]').val(dt);
         $('input[name="btime"]').val('00:00');
         $('input[name="etime"]').val('23:59');
+
+        $('input[name="bdate"]').val('2015-10-15');
         
         $('.selectpicker').selectpicker('deselectAll');
     }

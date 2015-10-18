@@ -2,8 +2,6 @@
 /** @property PDOStatement $statements[] */
 class SyncronizationModel extends CModel {
 
-    private $usth; // percon statement
-    private $esth; // events statemant
     private $statements = [];
 
     public function __construct() {
@@ -50,7 +48,7 @@ class SyncronizationModel extends CModel {
         ]);
         
         
-        $rec = get_param($data['data'], 0);
+        $rec = get_param($data, 0);
         return get_param($rec, 'sync_id', -1);
     }
     

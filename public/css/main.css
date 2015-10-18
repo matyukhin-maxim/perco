@@ -37,3 +37,16 @@ body {
     max-height: 400px;
     overflow-y: auto;
 }
+
+.title {
+    font-weight: bold;
+    margin-top: 7px;
+}
+
+.table-header {
+    width: 100%;
+}
+
+.white-bg {
+    background-color: #fff;
+}

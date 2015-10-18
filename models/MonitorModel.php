@@ -6,8 +6,8 @@ class MonitorModel extends CModel{
         
         $query  = 'select distinct department from person order by 1';
         $result = $this->select($query);
-        
-        return array_column($result['data'], 'department');
+
+        return array_column($result, 'department');
     }
     
     public function getActions($params) {
@@ -45,13 +45,9 @@ class MonitorModel extends CModel{
         $params['pname'] = toLike(get_param($params, 'pname', ''));
         $params['tabn' ] = toLike(get_param($params, 'tabn',  ''));
         
-        //var_dump($params);
-        //and p.department in ('', '')
-        
         $data = $this->select($query, $params);
         
         return $data;
-        //return $param;
     }
     
 }

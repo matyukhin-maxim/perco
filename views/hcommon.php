@@ -32,6 +32,7 @@
                     <div id="navbar" class="collapse navbar-collapse">
                         <ul class="nav navbar-nav">
                             <li><a href="/monitor/">Мониторинг</a></li>
+                            <li><a href="/user/">Сотрудники</a></li>
                             <li><a href="/report/">Построитель отчетов</a></li>
                             <li><a href="/about/">Помощь</a></li>
                         </ul>

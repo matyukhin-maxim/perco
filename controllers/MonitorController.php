@@ -12,7 +12,7 @@ class MonitorController extends CController {
         
         // get all departments for selectbox
         $this->data['depots'] = $this->model->getDepots();
-        
+
         $this->render('filter', false);
 
         $this->render('table');
@@ -25,7 +25,7 @@ class MonitorController extends CController {
                 'filter' => FILTER_VALIDATE_REGEXP,
                 'options' => [
                     'regexp' => '/^\d{4}(\-\d{2}){2}$/',
-                    'default' => '2015-10-01' //date('Y-m-d'),
+                    'default' => date('Y-m-d'),
                 ],
             ],
             'edate' => [
@@ -64,7 +64,7 @@ class MonitorController extends CController {
                 
         //var_dump($data);
         
-        $this->data['events'] = $data['data'];
+        $this->data['events'] = $data;
         echo $this->renderPartial('rowdata');
         
         //var_dump(array_merge($_POST, $data));
