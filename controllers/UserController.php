@@ -4,9 +4,8 @@
 class UserController extends CController {
     
     public function actionInfo() {
-        
-        //var_dump($this->arguments);
-        $this->render('', false);
+
+        $this->title .= ': Информация о сотруднике';
         
         $uid = get_param($this->arguments, 0, -1);
         
@@ -77,6 +76,7 @@ class UserController extends CController {
 
     public function actionIndex() {
 
+        $this->title .= ': Поиск сотрудника';
         $this->data['p_head'] = 'Список сотрудников';
         $this->render('../info', false);
 
@@ -88,7 +88,6 @@ class UserController extends CController {
     public function ajaxGetList() {
 
         $lname = filter_input(INPUT_POST, 'lname', FILTER_SANITIZE_STRING);
-        var_dump($lname);
 
         $this->data['persons'] = $this->model->getUsers($lname);
         echo $this->renderPartial('user-row');

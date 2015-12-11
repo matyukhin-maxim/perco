@@ -7,8 +7,9 @@ class MonitorController extends CController {
 
         $this->scripts[] = 'monitoring';
 
+        $this->title .= ': Мониторинг сотрудников';
         $this->data['p_head'] = 'Мониторинг сотрудников';
-        $this->render('../info', false);
+        //$this->render('../info', false);
         
         // get all departments for selectbox
         $this->data['depots'] = $this->model->getDepots();
@@ -62,8 +63,8 @@ class MonitorController extends CController {
         $params = filter_input_array(INPUT_POST, $filter); 
         $data = $this->model->getActions($params);
                 
-        //var_dump($data);
-        
+        //var_dump($this->model->getErrors());
+
         $this->data['events'] = $data;
         echo $this->renderPartial('rowdata');
         

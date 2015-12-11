@@ -7,4 +7,17 @@ $(function() {
     
     moment.locale('ru');
 
+    var dt = moment().format('YYYY-MM-DD');
+    $('#bdate, #edate').val(dt);
+
+    $('.dpicker').datetimepicker({
+        format: 'YYYY-MM-DD',
+        ignoreReadonly: true
+    });
+
+    $('.tpicker').datetimepicker({
+        format: 'LT',
+        ignoreReadonly: true
+    });
+
 });

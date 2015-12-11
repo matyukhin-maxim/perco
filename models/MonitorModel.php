@@ -10,7 +10,7 @@ class MonitorModel extends CModel{
         return array_column($result, 'department');
     }
     
-    public function getActions($params) {
+    public function getActions($params, $limit = 100) {
         
         // если параметр с отделами пустой,
         // то будем считать что фильтр не задан,
@@ -26,7 +26,7 @@ class MonitorModel extends CModel{
                 p.tabnum,  p.department, p.id,
                 concat_ws(' ', p.lname, p.fname, p.pname) fio,
                 if (e.ev_type = 2, 'ВХОД', 'ВЫХОД') evt,
-                e.ev_date, e.ev_time
+                e.ev_date, e.ev_time, e.ev_type
         from events e 
         left join person p on e.person_id = p.id
         where 1 = 1
@@ -37,8 +37,13 @@ class MonitorModel extends CModel{
             and p.pname like :pname
             and p.tabnum like :tabn
             $fdepots
-        order by e.ev_date desc, e.ev_time desc
-        limit 100";
+        order by e.ev_date desc, e.ev_time desc ";
+
+        if ($limit !== -1) {
+            // -1 mean that we need all data
+            $query .= " limit :limit";
+            $params['limit'] = $limit;
+        }
         
         $params['lname'] = toLike(get_param($params, 'lname', ''));
         $params['fname'] = toLike(get_param($params, 'fname', ''));

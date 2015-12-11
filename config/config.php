@@ -16,6 +16,7 @@ return [
 //    ],
     
     //'dbpath' => '/mnt/prohod/Baza/',
-    'dbpath' => '/home/matyukhin/db/',
-    
+    //'dbpath' => '/home/matyukhin/db/',
+    'dbpath' => '/home/fellix/web/www/oper.ngres.ru/www/tests/',
+
 ];

@@ -8,6 +8,7 @@ include_once 'core/CParadox.php';
 include_once 'core/CModel.php';
 include_once 'core/CController.php';
 include_once 'core/Routine.php';
+include_once 'core/PHPExcel.php';
 
 $query = strtolower(rtrim(get_param($_GET, 'url', 'index'), '/'));
 $url = explode('/', $query);

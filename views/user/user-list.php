@@ -23,7 +23,11 @@
                         <col class="col-xs-8">
                         <col class="col-xs-2">
                     </colgroup>
-                    <tbody></tbody>
+                    <tbody>
+                    <tr class="success text-center">
+                        <td colspan="3">Загрузка данных...</td>
+                    </tr>
+                    </tbody>
                 </table>
             </div>
         </div>

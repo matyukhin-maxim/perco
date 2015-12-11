@@ -4,7 +4,7 @@
 class CModel {
 
     protected static $db = null;
-    protected static $errorlist = [];   // store all errors happeniung in runtime
+    protected static $errorlist = [];   // store all errors happening in runtime
             
             
     function __construct() {
@@ -97,10 +97,12 @@ class CModel {
 
         $sth->execute();
         $error = $sth->errorInfo();
-        $emessasge = get_param($error, 2);
-        if ($emessasge)
-            self::$errorlist[] = $emessasge;
+        $ecode = get_param($error, 0);
 
+        if ($ecode !== '00000') {
+            $emsg = get_param($error, 2);
+            self::$errorlist[] = "MySQL error [$ecode]: " . ($emsg ? $emsg : 'Invalid params');
+        }
         return  $sth->fetchAll();
     }
 

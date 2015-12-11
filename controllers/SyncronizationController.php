@@ -19,8 +19,8 @@ class SyncronizationController extends CController {
         $this->render('', false);
         
         
-        //$this->syncUsers();
-        $this->syncEvents(date('Y-m-d'));
+        $this->syncUsers();
+        //$this->syncEvents(date('Y-m-d'));
         
         $this->render('');
         
