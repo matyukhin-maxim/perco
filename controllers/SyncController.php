@@ -1,10 +1,10 @@
 <?php
 
-
-/** @property SyncronizationModel $model */
-class SyncronizationController extends CController {
+/** @property SyncModel $model */
+class SyncController extends CController {
     
     public $path;
+    private $cnt_sync_month = 2; // Количество месяцев для выполнения синхронизации событий
     
     public function __construct() {
         parent::__construct();
@@ -14,14 +14,12 @@ class SyncronizationController extends CController {
 
 
     public function actionIndex() {
-        
-        
+
         $this->render('', false);
         
-        
-        //$this->syncUsers();
         $this->syncEvents(date('Y-m-d'));
-        
+        //$this->syncUsers();
+
         $this->render('');
         
     }
@@ -62,7 +60,8 @@ class SyncronizationController extends CController {
         }
 
         $this->model->stopTransaction($ok);
-        
+
+        printf ("[%s]: Sync user table %s\n", date('Y-m-d H:i:s'), $ok ? 'done' : 'fail');
         return (boolean)$ok;
     }
     
@@ -79,11 +78,11 @@ class SyncronizationController extends CController {
         if ($error > 0) 
             return false;
 
-        // create start timepoint ( firt day of input date )
+        // create start timepoint ( first day of input date )
         $starttime = mktime(0, 0, 0, $check['month'], 1, $check['year']);
 
         // sync 2 last month
-        for ($index = 0; $index < 2; $index++) {
+        for ($index = 0; $index < $this->cnt_sync_month; $index++) {
             
             $key = date('mY', $starttime);
             $fname = "$key.db"; // create database file name (in perco is - MMYYYY.db)
@@ -148,9 +147,11 @@ class SyncronizationController extends CController {
 
                 $this->model->stopTransaction($ok);
                 
-                
-                $status = sprintf("Sync %s table %s. %d record append.", $fname, $ok ? 'done' : 'fail', $delta);
-                echo "$status<br/>\n";
+
+                if ($delta > 0) {
+	                printf("[%s]: Sync %s table %s. %d record append.\n", date('Y-m-d H:i:s'), $fname, $ok ? 'done' : 'fail', $delta);
+	                if (php_sapi_name() !== 'cli') echo "<br/>";
+                }
                 $pdb->closeDB();
             }
 
@@ -158,5 +159,20 @@ class SyncronizationController extends CController {
         }
 
         return true;
+    }
+
+    public function actionCli() {
+        // Метод вызываемый при работе из консоли (cron)
+        // Делаем то же самое что и при actionIndex, но добавим вывол в лог
+        // и "умную" синхронизацию пользоватеелй
+
+        // синхронизируем события за последние 2 месяца
+        $this->syncEvents(date('Y-m-d'));
+
+        // если нужно, то и юзеров
+        if ($this->model->isUserSyncNeeded()) {
+            $this->syncUsers();
+        }
+
     }
 }

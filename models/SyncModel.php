@@ -1,6 +1,6 @@
 <?php
 /** @property PDOStatement $statements[] */
-class SyncronizationModel extends CModel {
+class SyncModel extends CModel {
 
     private $statements = [];
 
@@ -57,4 +57,18 @@ class SyncronizationModel extends CModel {
         return self::$db->query('update person set deleted = 1') !== false;
     }
 
+    public function isUserSyncNeeded() {
+
+        $result = $this->select('
+        select
+        count(distinct person_id) cnt
+        from events
+        where
+            ev_date > date_sub(now(), interval 1 month)
+            and not exists (select id from person p where p.id = person_id)');
+
+        // считаем количество пользователей в талице событий, id юзеров которых не найдены
+        $data = get_param($result, 0);
+        return get_param($data, 'cnt', 0) > 0;
+    }
 }
