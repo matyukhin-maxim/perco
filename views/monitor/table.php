@@ -7,9 +7,9 @@
                     <tr>
                         <th class="col-xs-1">Дата</th>
                         <th class="col-xs-1">Время</th>
-                        <th class="col-xs-6">ФИО</th>
+                        <th class="col-xs-5">ФИО</th>
                         <th class="col-xs-1">Номер</th>
-                        <th class="col-xs-2">Цех</th>
+                        <th class="col-xs-3">Цех</th>
                         <th class="col-xs-1">Действие</th>
                     </tr>
                     </thead>
@@ -20,9 +20,9 @@
                     <colgroup>
                         <col class="col-xs-1">
                         <col class="col-xs-1">
-                        <col class="col-xs-6">
+                        <col class="col-xs-5">
                         <col class="col-xs-1">
-                        <col class="col-xs-2">
+                        <col class="col-xs-3">
                         <col class="col-xs-1">
                     </colgroup>
                     <tbody></tbody>

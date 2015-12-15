@@ -19,9 +19,9 @@
             <div class="panel-body panel-response">
                 <table class="table table-striped table-condensed" id="users">
                     <colgroup>
-                        <col class="col-xs-2">
+                        <col class="col-xs-1">
                         <col class="col-xs-8">
-                        <col class="col-xs-2">
+                        <col class="col-xs-3">
                     </colgroup>
                     <tbody>
                     <tr class="success text-center">
