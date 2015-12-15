@@ -11,19 +11,22 @@ include_once 'core/Routine.php';
 include_once 'core/PHPExcel.php';
 
 $query = strtolower(rtrim(get_param($_GET, 'url', 'index'), '/'));
+if (php_sapi_name() === 'cli') $query = 'sync/cli';
 $url = explode('/', $query);
+
+chdir(dirname(__FILE__));
 
 mb_internal_encoding("UTF-8");
 
 try {
 
     // подгружаем все файлы моделей (можено бы было в автолоаде, но фтопку)
-    foreach (glob('./models/*.php') as $model) {
+    foreach (glob('models/*.php') as $model) {
         include_once $model;
     }
     
     // load global config
-    CController::$cfg = require_once './config/config.php';
+    CController::$cfg = require_once 'config/config.php';
     
     $module = $url[0];
 
@@ -61,6 +64,6 @@ try {
     
 } catch (Exception $exc) {
     
-    echo $exc->getMessage();
+    echo $exc->getMessage() . PHP_EOL;
     
 }
