@@ -18,9 +18,9 @@ $(function () {
         $('input[name="btime"]').val('00:00');
         $('input[name="etime"]').val('23:59');
 
-        $('input[name="bdate"]').val('2015-10-15');
-        
-        $('.selectpicker').selectpicker('deselectAll');
+        //$('input[name="bdate"]').val('2015-10-15');
+
+        $('.selectpicker:not(#action)').selectpicker('deselectAll');
     }
     
     $('.dpicker, .tpicker').on('dp.hide', function (e) {

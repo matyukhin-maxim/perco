@@ -76,6 +76,8 @@ class CModel {
                 unset($param[$key]);
             }
         }
+
+	    //var_dump($param);
         
         $sth = self::$db->prepare($query);
 

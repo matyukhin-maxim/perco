@@ -115,3 +115,31 @@ function get_array_part($data, $keys, $addempty = false) {
 
     return $result;
 }
+
+/**
+ * Генерирует опции для тега select
+ * переданного в виде массива.
+ *
+ * @param $options array Массив опций с ключами id и title
+ * @param int $selected int|string Предварительно выбранное значение
+ * @param bool $default boolean Нужно ли добавить к опциям пустой параметр по-умолчанию
+ * @return string
+ */
+function generateOptions($options, $selected = 0, $default = true) {
+	if (!is_array($options))
+		$options = array($options);
+
+	$result = "";
+	if ($default)
+		$result .= sprintf('<option value="">%s</option>', is_string($default) ? $default : '-') . PHP_EOL;
+
+	foreach ($options as $item) {
+		$id = get_param($item, 'id', 0);
+		$result .= sprintf('<option value="%s" %s>%s</option>',
+				$id,
+				$id == $selected ? 'selected' : '',
+				get_param($item, 'title', '?')) . PHP_EOL;
+	}
+
+	return $result;
+}

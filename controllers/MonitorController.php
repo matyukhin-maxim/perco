@@ -57,13 +57,20 @@ class MonitorController extends CController {
                 'filter' => FILTER_SANITIZE_STRING,
                 'flags'  => FILTER_REQUIRE_ARRAY,
             ],
+	        'action' => [
+		        'filter' => FILTER_SANITIZE_STRING,
+		        'flags'  => FILTER_REQUIRE_ARRAY,
+	        ],
             'tabn'  => FILTER_SANITIZE_STRING,
         ];
         
-        $params = filter_input_array(INPUT_POST, $filter); 
+        $params = filter_input_array(INPUT_POST, $filter);
+	    $params['action'] = $params['action'] ?: [0];
+
         $data = $this->model->getActions($params);
-                
-        //var_dump($this->model->getErrors());
+
+	    if (count($this->model->getErrors()))
+            var_dump($this->model->getErrors());
 
         $this->data['events'] = $data;
         echo $this->renderPartial('rowdata');

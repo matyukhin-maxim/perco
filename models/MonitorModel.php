@@ -32,6 +32,7 @@ class MonitorModel extends CModel{
         where 1 = 1
             and e.ev_date between :bdate and :edate
             and e.ev_time between :btime and :etime
+            and e.ev_type in :action
             and p.lname like :lname
             and p.fname like :fname
             and p.pname like :pname
