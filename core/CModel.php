@@ -61,23 +61,23 @@ class CModel {
         foreach ($param as $key => $value) {
             if (gettype($value) === 'array') {
                 $condition = "(";
+                $local = 0;
                 foreach ($value as $item) {
                     
-                    $condition .= $cnt ? "," : ""; // если не первый параметр, то добавим запятую
+                    $condition .= $local ? "," : ""; // если не первый параметр, то добавим запятую
                     $vparam = "_X" . ++$cnt;
                     $condition .= " :$vparam";
                     
                     // а параметр подмассива перекидываем в основной массив
                     // елементы вложенного массива не должны быть сами массивами, иначе хрень будет
                     $param[$vparam] = $item;
+                    $local++;
                 }
                 $condition .= ") ";
                 $query = str_replace(":$key", $condition, $query);
                 unset($param[$key]);
             }
         }
-
-	    //var_dump($param);
         
         $sth = self::$db->prepare($query);
 

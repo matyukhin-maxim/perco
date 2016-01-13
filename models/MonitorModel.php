@@ -21,6 +21,7 @@ class MonitorModel extends CModel{
             unset($params['depot']);
         }
         
+        
         $query = "
         select 
                 p.tabnum,  p.department, p.id,
@@ -40,6 +41,7 @@ class MonitorModel extends CModel{
             $fdepots
         order by e.ev_date desc, e.ev_time desc ";
 
+        
         if ($limit !== -1) {
             // -1 mean that we need all data
             $query .= " limit :limit";

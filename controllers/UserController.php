@@ -35,8 +35,9 @@ class UserController extends CController {
             'btime' => '00:00',
             'etime' => '23:59',
             'tabn'  => get_param($rec, 'tabnum'),
+            'action' => [1, 2],
         ];
-
+        
         $monitor = new MonitorModel();
         $this->data['events']  = $monitor->getActions($filter);
         $this->data['events_rendered'] = $this->renderPartial('rowdata');
