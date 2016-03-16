@@ -2,9 +2,9 @@
 
 class AboutController extends CController {
 
-    public function actionIndex() {
+	public function actionIndex() {
 
-        $this->render('index');
-    }
-    
+		$this->render('index');
+	}
+
 }

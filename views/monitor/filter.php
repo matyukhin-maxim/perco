@@ -52,47 +52,51 @@
 					</div>
 
 					<div class="col-xs-12 col-md-7">
+						<div class="row">
 
-						<div class="col-xs-6">
-							<label for="">Сотрудник :</label>
-							<input type="text" class="form-control" placeholder="Фамилия" name="lname"/>
-							<input type="text" class="form-control" placeholder="Имя" name="fname"/>
-							<input type="text" class="form-control" placeholder="Отчество" name="pname"/>
-						</div>
-
-						<div class="col-xs-6">
-							<div class="row">
-								<label>Дополнительные данные :</label>
-								<select class="selectpicker col-xs-12" multiple data-live-search="true"
-								        title="Цех [не выбран]"
-								        data-selected-text-format="count > 3"
-								        data-size="10"
-								        name="depot[]">
-									<?php
-									$options = get_param($depots, NULL, []);
-									foreach ($options as $item)
-										printf("<option>%s</option>\n", $item);
-									?>
-								</select>
+							<div class="col-xs-6">
+								<label for="">Сотрудник :</label>
+								<input type="text" class="form-control" placeholder="Фамилия" name="lname"/>
+								<input type="text" class="form-control" placeholder="Имя" name="fname"/>
+								<input type="text" class="form-control" placeholder="Табельный номер" name="tabn"/>
 							</div>
-							<div class="row clearfix">
-								<div class="col-xs-6">
-									<input type="text" class="form-control" placeholder="Табельный №" name="tabn"/>
-								</div>
-								<div class="col-xs-6">
-									<select id="action" name="action[]" class="selectpicker form-control" multiple title="Действие">
-										<option value="2" selected>Вход</option>
-										<option value="1" selected>Выход</option>
+
+							<div class="col-xs-6">
+								<div class="row">
+									<label>Дополнительные данные :</label>
+									<select class="selectpicker form-control" multiple data-live-search="true"
+									        title="Цех [ ВСЕ ]"
+									        data-selected-text-format="count > 3"
+									        data-size="10"
+									        name="depot[]">
+										<?= $options; ?>
 									</select>
 								</div>
-							</div>
-							<div class="ro-w">
-								<a href="#" class="btn btn-default col-xs-4" title="Сброс" id="reset">
-									<i class="glyphicon glyphicon-repeat"></i>
-								</a>
-								<a href="#" class="btn btn-default col-xs-4 col-xs-offset-4" title="Обновить" id="update">
-									<i class="glyphicon glyphicon-refresh"></i>
-								</a>
+
+								<div class="row">
+									<div class="btn-group btn-group-justified" data-toggle="buttons">
+										<label class="btn btn-default active">
+											<input type="checkbox" autocomplete="off" name="action[]" value="2" checked>
+											Вход
+										</label>
+										<label class="btn btn-default active">
+											<input type="checkbox" autocomplete="off" name="action[]" value="1" checked>
+											Выход
+										</label>
+									</div>
+								</div>
+
+								<div class="row">
+									<a href="#" class="btn btn-default col-xs-6" title="Сброс" id="reset">
+										<i class="glyphicon glyphicon-repeat"></i>
+										Сброс фильтра
+									</a>
+									<a href="#" class="btn btn-default col-xs-6" title="Обновить" id="update">
+										<i class="glyphicon glyphicon-refresh"></i>
+										Обновить
+									</a>
+								</div>
+
 							</div>
 						</div>
 					</div>

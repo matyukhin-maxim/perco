@@ -27,8 +27,8 @@ $(function () {
         update();
     });
 
-    var tmr = undefined;
-    $('input[type="text"], select').on('keyup change', function () {
+    var tmr = 0;
+    $('[type="text"], [type="checkbox"], .selectpicker').on('keyup change', function () {
         clearTimeout(tmr);
         tmr = setTimeout(function () {
             update();

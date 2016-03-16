@@ -2,68 +2,77 @@
 
 ini_set('display_errors', 1);
 set_time_limit(0);
-error_reporting(E_ALL ^ E_WARNING);
 
-include_once 'core/CParadox.php';
-include_once 'core/CModel.php';
-include_once 'core/CController.php';
-include_once 'core/Routine.php';
-include_once 'core/PHPExcel.php';
+error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
+//error_reporting(E_ALL);
+
+//chdir(dirname(__FILE__));
+
+require_once 'config/Config.php';
+require_once 'core/CModel.php';
+require_once 'core/CController.php';
+require_once 'core/Routine.php';
+require_once 'core/Pager.php';
+require_once 'core/Session.php';
+require_once 'core/CHtml.php';
+
+require_once 'core/CParadox.php';
+require_once 'core/PHPExcel.php';
 
 $query = strtolower(rtrim(get_param($_GET, 'url', 'index'), '/'));
-if (php_sapi_name() === 'cli') $query = 'sync/cli';
+if (php_sapi_name() === 'cli') $query = 'sync/cli';  # для запуска с крона
 $url = explode('/', $query);
 
-chdir(dirname(__FILE__));
-
 mb_internal_encoding("UTF-8");
+//Session::start();
 
 try {
 
-    // подгружаем все файлы моделей (можено бы было в автолоаде, но фтопку)
-    foreach (glob('models/*.php') as $model) {
-        include_once $model;
-    }
-    
-    // load global config
-    CController::$cfg = require_once 'config/config.php';
-    
-    $module = $url[0];
+	// подгружаем все файлы моделей (можено бы было в автолоаде, но фтопку)
+	foreach (glob('models/*.php') as $model) {
+		include_once $model;
+	}
 
-    // проверяем сущевствование файла контролера (класса)
-    $file = 'controllers/' . ucfirst($module) . 'Controller.php';
-    if (!file_exists($file)) {
-        throw new Exception("Controller file not found. '$file'");
-    }
+	$module = $url[0];
 
-    // подключаем
-    require_once $file;
+	// проверяем сущевствование файла контролера (класса)
+	$file = 'controllers/' . ucfirst($module) . 'Controller.php';
+	if (!file_exists($file)) {
+		throw new Exception("Файл контроллера '$module' не найден.");
+	}
 
-    $module .= 'Controller';
-    if (!class_exists($module)) {
-        throw new Exception("Controller '$module' undefined!");
-    }
-    
-    /* @var $ctrl CController */
-    $ctrl = new $module();
+	// подключаем
+	require_once $file;
 
-    // проверим существует ли нужный метод
-    $action = get_param($url, 1, 'index');
-    $prefix = isAjax() ? 'ajax' : 'action';
-    $method = $prefix . ucfirst($action);
+	$module .= 'Controller';
+	if (!class_exists($module)) {
+		throw new Exception("Класс контроллера '$module' не объявлен.");
+	}
 
-    if (!method_exists($ctrl, $method)) {
-        throw new Exception("Action '$method' undefined for controller '$module'.");
-    }
-    
-    // передаем параметры
-    $ctrl->arguments = array_slice($url, 2);
-    
-    // и вызываем запрошенное действие
-    $ctrl->$method();
-    
+	/* @var $ctrl CController */
+	$ctrl = new $module();
+
+	// проверим существует ли нужный метод
+	$action = get_param($url, 1, 'index');
+	$prefix = isAjax() ? 'ajax' : 'action';
+	$method = $prefix . ucfirst($action);
+
+	if (!method_exists($ctrl, $method)) {
+		throw new Exception("Действие '$method' не определено для контроллера '$module'.");
+	}
+
+	// передаем параметры
+	$ctrl->arguments = array_slice($url, 2);
+
+	// и вызываем запрошенное действие
+	$ctrl->$method();
+
 } catch (Exception $exc) {
-    
-    echo $exc->getMessage() . PHP_EOL;
-    
+
+	$message = $exc->getMessage();
+
+	setcookie('status', $message, time() + 5, '/');
+	$location = get_param($_SERVER, 'HTTP_REFERER', '/');
+	if (!isAjax()) header("Location: $location");
+	exit();
 }
