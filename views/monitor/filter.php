@@ -5,6 +5,9 @@
 			<div class="panel-heading">
 				<i class="glyphicon glyphicon-search"></i>&nbsp;
 				<strong>Настройка фильтра</strong>
+				<div class="pull-right text-muted italic">
+					<?= $sync;?>
+				</div>
 			</div>
 			<div class="panel-body">
 

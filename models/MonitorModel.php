@@ -58,4 +58,11 @@ class MonitorModel extends CModel {
 		return $data;
 	}
 
+	public function getLastSync() {
+
+		$data = $this->select('SELECT date_format(max(sync_date), "%d.%m.%Y %H:%i") mx FROM versions');
+		$row = get_param($data, 0);
+		return get_param($row, 'mx');
+	}
+
 }

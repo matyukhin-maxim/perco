@@ -15,6 +15,8 @@ class MonitorController extends CController {
 		$depots = $this->model->getDepots();
 		foreach ($depots as $did => $item) $this->data['options'] .= CHtml::createOption($item, $did);
 
+		$this->data['sync'] = $this->model->getLastSync();
+
 		$this->render('filter', false);
 
 		$this->render('table');
