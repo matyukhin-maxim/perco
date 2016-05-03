@@ -27,7 +27,7 @@ class MonitorModel extends CModel {
                 p.tabnum, d.title department, p.id,
                 concat_ws(' ', p.lname, p.fname, p.pname) fio,
                 a.title evt,
-                e.ev_date, e.ev_time, e.ev_type
+                date_format(e.ev_date, '%d.%m.%Y') ev_date, e.ev_time, e.ev_type
         from events e 
         left join person p on e.person_id = p.id
         left join departments d on p.department = d.id
