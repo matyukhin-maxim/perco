@@ -7,11 +7,11 @@ class Configuration {
 
 		//'host' => 'localhost',
 		'host' => '172.28.120.39',
-//		'host' => '172.28.122.24',
+		//'host' => '172.28.122.24',
 
 		//'user' => 'root',
 		'user' => 'matyukhin',
-//		'user' => 'max',
+		//'user' => 'max',
 
 		'pass' => 'ksTg3276sm@',
 		//'pass' => 'fell1x',
