@@ -333,4 +333,23 @@ class SyncController extends CController {
 
 		//$this->render('');
 	}
+
+	public function actionVipReload() {
+
+		return;
+		$this->render('', false);
+		$dStop = DateTime::createFromFormat('Y-m-d', '2016-03-01');
+		$oneDay = new DateInterval('P1D');
+
+		$current = new DateTime();
+
+		while ($current >= $dStop) {
+			//var_dump($current->format('d.m.Y'));
+			$this->actionProtection($current->format('Y-m-d'));
+			$current->sub($oneDay);
+		}
+
+		var_dump("DONE!");
+		$this->render('');
+	}
 }
