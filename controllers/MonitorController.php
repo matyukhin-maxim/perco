@@ -3,6 +3,12 @@
 /** @property MonitorModel $model */
 class MonitorController extends CController {
 
+	public function __construct() {
+		parent::__construct();
+
+		if (!$this->authdata) $this->redirect(Configuration::$openid);
+	}
+
 	public function actionIndex() {
 
 		$this->scripts[] = 'monitoring';

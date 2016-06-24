@@ -38,7 +38,24 @@
 				<li><a href="/monitor/">Мониторинг</a></li>
 				<li><a href="/user/">Сотрудники</a></li>
 				<li><a href="/report/">Построитель отчетов</a></li>
-				<!--<li><a href="/about/">Помощь</a></li>-->
+				<li class="dropdown last-menu-item strong">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						<i class="glyphicon glyphicon-user"></i>
+						<?= get_param($authdata, 'fullname', 'n/a'); ?>
+						<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu dropdown-user">
+						<li class="dropdown-header text-right strong">
+							<?= get_param($authdata, 'fullname', '-'); ?>
+						</li>
+						<li class="divider"></li>
+						<li><a href="/auth/exit/">
+								<i class="glyphicon glyphicon-log-out"></i>
+								Выход
+							</a>
+						</li>
+					</ul>
+				</li>
 			</ul>
 		</div>
 	</div>

@@ -1,5 +1,7 @@
 <?php
 
+define('PASSKEY', 'QN57iahCtp0G7mKISbIbYTWwOeBB5tdc');
+
 class Configuration {
 
 	public static $connection = [
@@ -37,4 +39,5 @@ class Configuration {
 	public static $brandName = 'Мониторинг проходной';
 
 	public static $dbpath = '/mnt/prohod/Baza/';
+	public static $openid = 'http://openid.asu.ngres/sites/';
 }

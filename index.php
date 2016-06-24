@@ -15,16 +15,17 @@ require_once 'core/Routine.php';
 require_once 'core/Pager.php';
 require_once 'core/Session.php';
 require_once 'core/CHtml.php';
+require_once 'core/Cipher.php';
 
 require_once 'core/CParadox.php';
 require_once 'core/PHPExcel.php';
 
-$query = strtolower(rtrim(get_param($_GET, 'url', 'index'), '/'));
+$query = (rtrim(get_param($_GET, 'url', 'index'), '/'));
 if (php_sapi_name() === 'cli') $query = 'sync/cli';  # для запуска с крона
 $url = explode('/', $query);
 
 mb_internal_encoding("UTF-8");
-//Session::start();
+Session::start();
 
 try {
 

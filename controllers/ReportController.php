@@ -10,6 +10,8 @@ class ReportController extends CController {
 	public function __construct() {
 		parent::__construct();
 
+		if (!$this->authdata) $this->redirect(Configuration::$openid);
+
 		$this->scripts[] = 'settings';
 		$this->xls = null;
 	}
